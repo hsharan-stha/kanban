@@ -1,0 +1,11 @@
+export enum Permission {
+  READ = 'READ',
+  CREATE = 'CREATE',
+  UPDATE = 'UPDATE',
+  DELETE = 'DELETE',
+  REJECTED = 'REJECTED',
+  APPROVE = 'APPROVE',
+  REVIEW = 'REVIEW',
+  VERIFY = 'VERIFY',
+  REJECT = 'REJECT',
+}

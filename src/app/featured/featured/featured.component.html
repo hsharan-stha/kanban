@@ -1,0 +1,20 @@
+<app-featured-layout>
+  <ng-container sideBar>
+    <app-sidebar
+      (toggle)="toggled()"
+      (onSideBarCLickEvent)="onSideBarClickEvent($event)"
+    ></app-sidebar>
+  </ng-container>
+  <ng-container mainSection>
+    <div class="app-flex-layout app-wrapper-layout">
+      <ng-content select="[subSideBar]"></ng-content>
+      <div class="flex-grow-1 position-relative">
+        <div class="app-absolute-layout">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</app-featured-layout>
+
+

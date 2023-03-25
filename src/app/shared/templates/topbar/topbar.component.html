@@ -1,0 +1,15 @@
+<div class="top-bar">
+  <span class="top-bar__heading">
+    <ng-container *ngIf="headerTitle">
+      {{ headerTitle | translate }}
+    </ng-container>
+
+    <ng-container *ngIf="!headerTitle">
+      {{
+        currentMenu["menuName"]
+          | localForeignTranslate : currentMenu["menuNameNp"]
+      }}
+    </ng-container>
+  </span>
+  <ng-content select="[extraContent]"></ng-content>
+</div>

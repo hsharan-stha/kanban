@@ -1,0 +1,38 @@
+#main-body {
+    app-sidebar {
+        width: 0px;
+        //overflow: hidden;
+        transform: translate(-16rem, 0px);
+        transition: 0.25s width $time-func-1;
+    }
+
+    .content-body {
+        width: 100%;
+        position: relative;
+        transition: 0.25s width $time-func-1;
+    }
+
+    &.toggled {
+        app-sidebar {
+            width: var(--mastermenu-width);
+            transform: unset;
+        }
+
+        .content-body {
+            width: calc(100% - var(--sidebar-width));
+            position: relative;
+
+            .top-bar {
+                .toggler {
+                    display: none;
+                }
+            }
+
+            .main-header {
+                .toggler {
+                    display: none;
+                }
+            }
+        }
+    }
+}

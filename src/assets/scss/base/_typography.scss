@@ -1,0 +1,24 @@
+//Typography Settings
+@each $label,
+$value in $font-size {
+    .#{$label},
+    #{$label} {
+        font-size: #{$value};
+        margin: 0;
+        @if $label==p or $label==small {
+            line-height: 150%;
+        }
+        @else {
+            line-height: 130%;
+            font-weight: 600;
+        }
+    }
+}
+
+// Font weight
+@each $label,
+$value in $font-weight {
+    .fw-#{$label} {
+        font-weight: #{$value};
+    }
+}

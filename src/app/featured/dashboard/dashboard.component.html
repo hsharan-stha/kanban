@@ -1,0 +1,206 @@
+<div class="app-flex-layout transparent-background" xmlns="http://www.w3.org/1999/html">
+  <div class="flex-grow-1 p-4">
+    <div class="app-flex-layout bg-white">
+      <div class="flex-grow-1 position-relative">
+        <div class="bg-white app-absolute-layout scrollable p-4">
+          <div class="row">
+            <app-topbar headerTitle="Task List">
+              <button extraContent class="btn btn-primary" (click)="openTaskModal()">Add Task</button>
+            </app-topbar>
+          </div>
+          <div class="row" cdkDropListGroup>
+
+            <div class="col-4" cdkDropList
+                 [cdkDropListData]="todo"
+                 (cdkDropListDropped)="drop($event)">
+              <h5>To do <span class="count ml-3">{{todo.length }}</span></h5>
+              <div class="form-group mt-3">
+                <input
+                  type="text"
+                  (keyup)="searchTask($event,'todo')"
+                  class="form-control"
+                  placeholder="Search Todo list"
+                />
+              </div>
+              <div class="kanban-box cursor-pointer" *ngFor="let item of todo | myfilter:todoFilterArgs" cdkDrag>
+                <div class="kanban-box-text">
+                  <div class="kanban-box-text-icon">
+                    <i class="ic-check-cricle"></i>
+                  </div>
+                  <div class="kanban-box-text-main">
+                    <div class="kanban-box-text-main-head">
+                      {{ item.taskName }} ({{item.assignDate}} - {{item.deadline}})
+                    </div>
+                    <div class="kanban-box-text-main-desc">
+                      {{item.description}}
+                    </div>
+                  </div>
+                </div>
+                <div class="kanban-box-main">
+                  <div class="status-{{item.priority}}">
+                    {{item.priority}}
+                  </div>
+                  <div class="kanban-box-icon">
+                    <i class="ic-edit" (click)="editTodo(item)"></i>
+                    <i class="ic-delete ml-3" (click)="deleteTodo(item)"></i>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="col-4" cdkDropList
+                 [cdkDropListData]="inProgress"
+                 (cdkDropListDropped)="drop($event)">
+              <h5>In Progress <span class="count ml-3">{{inProgress.length }}</span></h5>
+              <div class="form-group mt-3">
+                <input
+                  type="text"
+                  (keyup)="searchTask($event,'progress')"
+                  class="form-control"
+                  placeholder="Search In Progress list"
+                />
+              </div>
+              <div class="kanban-box cursor-pointer" *ngFor="let item of inProgress | myfilter:progressFilterArgs"
+                   cdkDrag>
+
+                <div class="kanban-box-text">
+                  <div class="kanban-box-text-icon">
+                    <i class="ic-check-cricle"></i>
+                  </div>
+                  <div class="kanban-box-text-main">
+                    <div class="kanban-box-text-main-head">
+                      {{ item.taskName }} ({{item.assignDate}} - {{item.deadline}})
+                    </div>
+                    <div class="kanban-box-text-main-desc">
+                      {{item.description}}
+                    </div>
+                  </div>
+                </div>
+                <div class="kanban-box-main">
+                  <div class="status-{{item.priority}}">
+                    {{item.priority}}
+                  </div>
+                  <div class="kanban-box-icon">
+                    <i class="ic-chevron-right"></i>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-4" cdkDropList
+                 [cdkDropListData]="done"
+                 (cdkDropListDropped)="drop($event)">
+              <h5>Done <span class="count ml-3">{{done.length }}</span></h5>
+              <div class="form-group mt-3">
+                <input
+                  type="text"
+                  (keyup)="searchTask($event,'done')"
+                  class="form-control"
+                  placeholder="Search Done list"
+                />
+              </div>
+              <div class="kanban-box cursor-pointer" *ngFor="let item of done | myfilter:doneFilterArgs" cdkDrag>
+
+                <div class="kanban-box-text">
+                  <div class="kanban-box-text-icon">
+                    <i class="ic-check-cricle"></i>
+                  </div>
+                  <div class="kanban-box-text-main">
+                    <div class="kanban-box-text-main-head">
+                      {{ item.taskName }} ({{item.assignDate}} - {{item.deadline}})
+                    </div>
+                    <div class="kanban-box-text-main-desc">
+                      {{item.description}}
+                    </div>
+                  </div>
+                </div>
+                <div class="kanban-box-main">
+                  <div class="status-{{item.priority}}">
+                    {{item.priority}}
+                  </div>
+                  <div class="kanban-box-icon">
+                    <i class="ic-chevron-right"></i>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #taskModal let-modal>
+  <div class="modal-header modal-header-blue flex-between">
+    <h6 class="h6">{{ "Add Task" | translate }}</h6>
+    <div class="modal-header-flex align-items-center">
+      <i class="ic-close cursor-pointer" (click)="modal.dismiss()"></i>
+    </div>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="taskForm" (keydown.escape)="$event.preventDefault()">
+      <div class="row">
+        <div class="form-group  col-6 mb-3">
+          <label for="taskName">{{ "Task Name" | translate }} </label>
+          <input
+            type="text"
+            class="form-control"
+            id="taskName"
+            formControlName="taskName"
+          />
+        </div>
+
+        <div class="form-group col-4 mb-3">
+          <label for="priority">{{ "priority" | translate }} </label>
+          <select class="form-control" id="priority" formControlName="priority">
+            <option value="">Select</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </div>
+        <div class="form-group  col-4 mb-3">
+          <label for="assignDate">{{ "assignDate" | translate }} </label>
+          <input
+            type="date"
+            class="form-control"
+            id="assignDate"
+            formControlName="assignDate"
+          />
+        </div>
+        <div class="form-group  col-4 mb-3">
+          <label for="deadline">{{ "deadline" | translate }} </label>
+          <input
+            type="date"
+            class="form-control"
+            id="deadline"
+            formControlName="deadline"
+          />
+        </div>
+        <div class="form-group  col-12 mb-3">
+          <label for="description">{{ "Description" | translate }} </label>
+          <input
+            type="text"
+            class="form-control "
+            id="description"
+            formControlName="description"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+  <hr class="m-0"/>
+  <div class="modal-footer">
+    <div class="d-flex flex-end">
+      <button class="btn btn-green" (click)="onSubmit()">
+        {{ "save" | translate }}
+      </button>
+    </div>
+  </div>
+</ng-template>
+

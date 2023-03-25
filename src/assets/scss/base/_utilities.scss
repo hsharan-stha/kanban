@@ -1,0 +1,57 @@
+.scrollable {
+    position: relative;
+    overflow: auto;
+    scroll-behavior: smooth;
+    scroll-padding-top: 1.5rem;
+
+    @include scrollable();
+    &:hover {
+    }
+}
+
+.border {
+    &-lg {
+        &-off {
+            @include media-breakpoint-down(lg) {
+                border: unset !important;
+            }
+        }
+    }
+}
+
+.codebox {
+    background-color: $cool-gray-100;
+    padding: 1rem;
+    border-radius: $default-radius;
+    border: 1px solid $cool-gray-200;
+
+    &.select-all {
+        pre {
+            -webkit-user-select: all; /* Chrome all / Safari all */
+            -moz-user-select: all; /* Firefox all */
+            -ms-user-select: all; /* IE 10+ */
+            user-select: all;
+        }
+    }
+}
+
+.align {
+    &-vertical {
+        display: flex;
+        align-items: center;
+      p{
+        font-size: 0.875rem;
+      }
+    }
+}
+
+.grid {
+    &-list {
+        > div,
+        p {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: 150px 1fr;
+        }
+    }
+}

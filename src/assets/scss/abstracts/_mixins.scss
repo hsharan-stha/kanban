@@ -1,0 +1,153 @@
+// mixin for alert
+@mixin alert($background, $color, $border-color, $icon-color, $close-color) {
+  background-color: $background;
+  border-color: $border-color;
+  p {
+    color: $color;
+  }
+  i,
+  span {
+    color: $icon-color;
+  }
+
+  svg {
+    path {
+      fill: $icon-color;
+    }
+  }
+
+  .btn-icon-only {
+    i,
+    svg,
+    span {
+      color: $close-color;
+    }
+    &:hover {
+      background-color: tint-color($border-color, 70%);
+    }
+  }
+}
+
+// mixin for button
+@mixin btn(
+  $background,
+  $color,
+  $hover-background-color,
+  $hover-color,
+  $focus-color,
+  $focus-shadow,
+  $focus-clicked,
+  $active-color
+) {
+  background-color: $background;
+  color: $color;
+  &:hover {
+    background-color: $hover-background-color;
+    color: $hover-color;
+  }
+  &:focus {
+    background-color: $background;
+    color: $color;
+    box-shadow: $focus-clicked;
+  }
+  &:active {
+    background: $background;
+    color: $active-color;
+    box-shadow: $focus-shadow;
+  }
+  &:active:focus {
+    box-shadow: $focus-shadow;
+  }
+}
+
+@mixin scrollable($thumb: $blue, $track: $gray-100) {
+  overflow: auto;
+  //padding-right: .5rem;
+  /* width */
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: $track;
+    border-radius: 4px;
+  }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: rgba($thumb, 0.8);
+    border-radius: 4px;
+    // cursor: pointer;
+  }
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: $thumb;
+    cursor: pointer;
+  }
+}
+
+//sidebar expanded state
+@mixin sidebar-expanded-state {
+}
+
+@mixin sidebar-collapsed-state {
+}
+
+@mixin scrollable($thumb: $gray-300, $track: $gray-100) {
+  overflow: auto;
+  //padding-right: .5rem;
+  /* width */
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: $track;
+    border-radius: 4px;
+  }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: rgba($thumb, 0.8);
+    border-radius: 4px;
+    // cursor: pointer;
+  }
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: $thumb;
+    cursor: pointer;
+  }
+}
+
+// button outline
+@mixin button-outline-variant(
+  $color,
+  $color-hover,
+  $active-background,
+  $active-border
+) {
+  background-color: $active-background;
+  color: $color;
+  border-color: $active-border;
+  [class^="ic-"],
+  [class*=" ic-"] {
+    color: $color;
+  }
+  &:hover {
+    background-color: rgba($color, 0.16);
+    color: $color;
+    border-color: rgba($color, 0.16);
+    [class^="ic-"],
+    [class*=" ic-"] {
+      color: $color-hover;
+    }
+  }
+}
+
+//flex
+@mixin flex($vertical: null, $horizontal: null, $direction: null) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $vertical;
+  justify-content: $horizontal;
+}

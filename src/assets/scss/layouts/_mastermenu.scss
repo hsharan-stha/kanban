@@ -1,0 +1,260 @@
+.mastermenu {
+  background-color: $secondary;
+  width: var(--mastermenu-width);
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 100vh;
+  transition: all 0.2s ease-in;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+
+    .toggler {
+      height: 100%;
+      width: var(--appbar-width);
+    }
+  }
+
+  &--items {
+    padding: 1rem;
+
+    .list {
+      span {
+        color: $white;
+      }
+    }
+
+    input {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 0.5rem 0.75rem 0.5rem 1rem;
+      gap: 0.5rem;
+      width: 14.0625rem;
+      height: 2.3125rem;
+      background: $cool-gray-200;
+      border-radius: 0.25rem;
+    }
+
+    i {
+      color: $cool-gray-500;
+    }
+  }
+
+  &-logo {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1rem 1rem 1rem;
+    cursor: pointer;
+    justify-content: space-between;
+
+    &__left {
+      display: flex;
+      color: $white;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 130%;
+      gap: 0.5rem;
+    }
+
+    h6 {
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 100%;
+      margin-left: 0.5rem;
+      color: $cool-gray-800;
+    }
+  }
+
+  &-link {
+    padding: 0.5rem;
+    color: $cool-gray-600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    line-height: 1rem;
+    @include rfs(14px);
+
+    [class^="ic-"],
+    [class*=" ic-"],
+    svg,
+    img {
+      font-size: 1rem;
+    }
+
+    &:hover {
+      color: $white;
+      background: $cool-gray-900;
+    }
+
+    &.active {
+      background: $cool-gray-900;
+      color: $white;
+    }
+  }
+
+  .mastermenu {
+    &-link {
+      border-radius: $g-border-radius;
+      justify-content: flex-start;
+
+      [class^="ic-"],
+      [class*=" ic-"],
+      svg,
+      img {
+        margin-right: 0.75rem;
+        color: inherit;
+      }
+    }
+  }
+
+  &--employee-information {
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--left {
+      img {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    }
+
+    &--right {
+      padding-left: 1.5rem;
+
+      h6 {
+        font-weight: 600;
+        font-size: 0.875rem;
+        line-height: 150%;
+        color: $cool-gray-600;
+      }
+
+      p {
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 150%;
+        color: $cool-gray-600;
+      }
+    }
+  }
+}
+
+.submenu {
+  &-link {
+    padding: 0.5rem;
+    color: $cool-gray-600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    @include rfs(0.875rem);
+
+    [class^="ic-"],
+    [class*=" ic-"],
+    svg,
+    img {
+      font-size: 1.5rem;
+    }
+
+    &:hover {
+      color: $white;
+      background: $cool-gray-900;
+    }
+
+    &.active {
+      background: $cool-gray-900;
+      color: $white;
+    }
+  }
+}
+
+
+.dropdown {
+  cursor: pointer;
+  .employee-details {
+    padding: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+
+    &__personal-info {
+      column-gap: 1.25rem;
+      color: $white;
+      align-items: center;
+      &__image {
+        border-radius: 50%;
+      }
+
+      &__name {
+        font-weight: 600;
+        font-size: 0.875rem;
+        .fullname {
+          width: 7.1875rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      &__designation {
+        font-weight: 400;
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+  .dropdown-menu {
+    background-color: $white;
+    transform: translate(0.5rem, -0.5rem) !important;
+
+    .ic-close {
+      font-size: 1rem !important;
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      cursor: pointer;
+    }
+
+    .dropdown--list {
+      .personal-info {
+        color: $cool-gray-800;
+      }
+
+      li {
+        color: $cool-gray-600;
+        cursor: pointer;
+
+        &:hover {
+          background: $cool-gray-100;
+          color: black;
+        }
+
+        i {
+          font-size: 1.25rem;
+        }
+
+        p {
+          font-size: 0.875rem;
+        }
+      }
+    }
+  }
+}

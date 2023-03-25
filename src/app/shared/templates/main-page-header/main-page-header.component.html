@@ -1,0 +1,21 @@
+<div class="header-background d-flex justify-content-between align-items-center">
+  <div class="d-flex justify-content-between align-items-center main-header p-0">
+    <button *ngIf="!currentMenu['masterName']" (click)="toggled()"
+            class="btn p-0 h-auto btn-icon-only toggler text-primary">
+      <i class="ic-doublecarret-right"></i>
+    </button>
+    <h5 *ngIf="!mainPageHeading">{{
+      currentMenu['name']
+        | localForeignTranslate:  currentMenu['nameNp'] }}</h5>
+    <h5 *ngIf="mainPageHeading"> {{mainPageHeading | translate}}</h5>
+    <ng-content select="[head-5]"></ng-content>
+
+
+  </div>
+  <ng-container *ngIf="currentMenu['create']==true">
+    <ng-content select="[button]"></ng-content>
+  </ng-container>
+
+  <ng-content select="[globalSearchBtn]"></ng-content>
+</div>
+

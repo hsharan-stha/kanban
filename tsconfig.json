@@ -1,0 +1,76 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2020",
+    "module": "es2020",
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "paths": {
+      "@shared/*": [
+        "src/app/shared/*"
+      ],
+      "@core/*": [
+        "src/app/core/*"
+      ],
+      "@featured/*": [
+        "src/app/featured/*"
+      ],
+      "@directives/*": [
+        "src/app/shared/directives/*"
+      ],
+      "@guards/*": [
+        "src/app/guards/*"
+      ],
+      "@interceptors/*": [
+        "src/app/interceptors/*"
+      ],
+      "@models/*": [
+        "src/app/models/*"
+      ],
+      "@environment/*": [
+        "src/environments/*"
+      ],
+      "@pipes/*": [
+        "src/app/shared/pipes/*"
+      ],
+      "@resolvers/*": [
+        "src/app/resolvers/*"
+      ],
+      "@services/*": [
+        "src/app/services/*"
+      ],
+      "@validation/*": [
+        "src/app/validation/*"
+      ],
+      "@constant/*": [
+        "src/app/shared/constant/*"
+      ],
+      "@utils/*": [
+        "src/app/utils/*"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}

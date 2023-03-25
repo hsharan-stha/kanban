@@ -1,0 +1,29 @@
+.top-bar {
+  padding: 1rem 1.5rem;
+  gap: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  /* Lighttheme/base / white */
+
+  background: #ffffff;
+  /* border/bottom */
+
+  box-shadow: inset 0px -1px 0px #dee2e6;
+
+  &__heading {
+    /* base/primary */
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.125rem;
+    line-height: 130%;
+    color: #0d2344;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+  }
+}

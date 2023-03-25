@@ -1,0 +1,79 @@
+<aside class="mastermenu flex-grow-1">
+  <div class="mastermenu--top app-flex-layout">
+    <div class="mastermenu-logo">
+      <div class="mastermenu-logo__left" routerLink="/featured/dashboard">
+        <img
+          src="/assets/svg/Vector.svg"
+          height="24"
+          width="24"
+          alt=""
+        />
+        <span class="primary-color">{{"Kanban" | translate}}</span>{{"Task" | translate}}
+      </div>
+       </div>
+    <div class="mastermenu--items app-flex-layout">
+      <div class="form-group">
+        <div class="form-control-icon rft">
+          <input
+            type="text"
+            (keyup)="searchMenuItems($event)"
+            class="form-control"
+            placeholder="Search"
+          />
+        </div>
+      </div>
+      <div class="flex-grow-1 position-relative">
+        <ul class="list list-mastermenu app-absolute-layout scrollable">
+          <ng-container *ngFor="let menu of allMenus; let i = index">
+            <li (click)="onSideBarCLick(menu)">
+              <a
+                *ngIf="menu['hasChild'] == false"
+                routerLinkActive="active"
+                [routerLink]="menu['menuLink']"
+                class="mastermenu-link nav-link"
+                [title]="menu?.['name'] | localForeignTranslate : menu?.['nameNp']"
+              >
+                <i class="ic-{{ menu['iconUrl'] }}"></i>
+                <span>{{
+                  menu?.["name"] | localForeignTranslate : menu?.["nameNp"]
+                  }}</span>
+              </a>
+
+              <a
+                *ngIf="menu['hasChild']"
+                class="mastermenu-link nav-link hasSub-sidebar"
+                data-bs-toggle="collapse"
+                href="#collapseExample_{{ i }}"
+                role="button"
+                aria-expanded="false"
+                aria-controls="collapseExample"
+              >
+                <i class="ic-{{ menu['iconUrl'] }}"></i>
+                <span class="w-100">{{
+                  menu?.["name"] | localForeignTranslate : menu?.["nameNp"]
+                  }}</span></a
+              >
+              <ul class="list collapse" id="collapseExample_{{ i }}">
+                <li *ngFor="let lastSubMenu of menu['children']; let i = index">
+                  <a
+                    routerLinkActive="active"
+                    [routerLink]="lastSubMenu?.['menuLink']"
+                    class="submenu-link nav-link sidebar-link master ml-3"
+                  >
+                    <span>
+                    {{
+                      lastSubMenu?.["name"]
+                        | localForeignTranslate : lastSubMenu?.["nameNp"]
+                      }}
+                      </span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</aside>
