@@ -125,17 +125,21 @@ export class DashboardComponent implements OnInit {
   }
 
   public onSubmit(): void {
-
     if (this.taskForm.invalid) {
       this.alertifyService.error("Invalid Data")
       return;
     }
-
+    debugger
     if (this.taskForm.get('id').value) {
-      this.todo = this.todo.filter((i: KanbanInterface) => i.id == this.taskForm.get('id').value)
+      let found: KanbanInterface = this.todo.find((i: KanbanInterface) => i.id == this.taskForm.get('id').value)
+      let foundIndex: number = this.todo.findIndex((i: KanbanInterface) => i.id == this.taskForm.get('id').value)
+      found = {...found, ...this.taskForm.value};
+      this.todo[foundIndex] = found;
+      this.popupModalService.dismissAll();
+      return;
     }
 
-    let value = {...this.taskForm.value, id: this.todo.length};
+    let value = {...this.taskForm.value, id: Date.now()};
     this.todo.push(value);
 
     this.popupModalService.dismissAll();
@@ -152,11 +156,13 @@ export class DashboardComponent implements OnInit {
   public editTodo(item: KanbanInterface) {
     this.taskForm.patchValue(item);
 
+    console.log(this.taskForm);
     this.openTaskModal('edit');
   }
 
   public deleteTodo(item: KanbanInterface) {
-    this.todo = this.todo.filter((i: KanbanInterface) => i.id == item.id)
+    console.log(item)
+    this.todo = this.todo.filter((i: KanbanInterface) => i.id != item.id)
   }
 
 }
